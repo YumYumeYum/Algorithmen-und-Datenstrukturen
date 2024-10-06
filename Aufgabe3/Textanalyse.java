@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Textanalyse{
 
     private int string_count;
@@ -9,26 +12,33 @@ public class Textanalyse{
         this.args = args;
     }
 
-    public void string_length(){
+    public int[] string_length(){
         this.length = new int[string_count];
 
         for(int i = 0; i < string_count; i++){
             this.length[i] = args[i].length();
 
-            System.out.println(this.length[i]);
+            //System.out.println(this.length[i]);
         }
+        return this.length;
     }
 
-    public void char_count(){
+    public Map<Character, Integer> char_count(){
         string_length();
-        int count;
+        Map<Character, Integer> charCountMap = new HashMap<>();
 
-        for(String arg : args){
+        for(String arg : args){ //iteriert duch alle argumente
 
             for(int i = 0; i < arg.length(); i++){
+                char letter = arg.charAt(i);
+                letter = Character.toUpperCase(letter);
 
+                charCountMap.putIfAbsent(letter, 0);
+            
+                charCountMap.put(letter, charCountMap.get(letter) + 1);
             }
         }
+        return charCountMap;
     }
 
 }
