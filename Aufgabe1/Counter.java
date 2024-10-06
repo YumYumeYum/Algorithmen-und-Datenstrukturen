@@ -27,7 +27,7 @@ public class Counter {
         if( x > 0 ){
             x--;
         }else{
-            //System.out.println("Couner is already at 0! Decrement is not possible");
+            System.out.println("Couner is already at 0! Decrement is not possible");
         }
     }
 

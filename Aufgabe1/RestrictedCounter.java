@@ -23,5 +23,3 @@ public class RestrictedCounter extends Counter{
         return diff;
     }
 }
-
-//methode freeCapacity(); implementieren, zeigt die aktuellen freien plaetze an
