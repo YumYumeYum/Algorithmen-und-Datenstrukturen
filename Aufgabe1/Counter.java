@@ -39,8 +39,9 @@ public class Counter {
     public void restore(){
         if(juergen){
             x = temp;
+        } else {
+            System.out.println("restoring value is not possible, you have to safe a value before restoring is available!");
         }
-        System.out.println("restoring value is not possible, you have to safe a value before restoring is available!");
     }
 
 }
