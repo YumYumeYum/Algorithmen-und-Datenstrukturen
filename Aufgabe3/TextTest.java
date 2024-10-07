@@ -8,6 +8,7 @@ public class TextTest {
         for(int i: arr){
             System.out.println(i);
         }
+        //System.out.println(Arrays.toString(arr)); is auch moeglich
 
         System.out.println(Textlogic.char_count());
 
