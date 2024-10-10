@@ -2,9 +2,20 @@ public class PowerFunctions{
 
     private static Counter countPower = new Counter();
     private static Counter countFastPower = new Counter();
+    //es kann nicht in counter erzeugt werden da es in PowerFunctions private ist
 
-    //private static int countPower;
-    //private static int countFastPower;
+    public static void resetCounters(){      //setzt beide Zaehler auf 0 zurueck.
+        countPower.reset();
+        countFastPower.reset();
+    }
+
+    public static int getCountPower(){      //liefert den Zaehlerstand von countPower
+        return countPower.get();
+    }
+
+    public static int getCountFastPower(){      //liefert den Zaehlerstand von countFastPower
+        return countFastPower.get();
+    }
 
     public static double power(double x, int n){
 

@@ -43,5 +43,4 @@ public class Counter {
             System.out.println("restoring value is not possible, you have to safe a value before restoring is available!");
         }
     }
-
 }
