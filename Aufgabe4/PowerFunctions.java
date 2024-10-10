@@ -34,7 +34,7 @@ public class PowerFunctions{
     }
 
     public static double fastPower(double x, int n){
-        double ans = 1;     //answer
+        double ans = 1;
 
         while(n > 0){ 
             int last_bit = (n & 1); 
