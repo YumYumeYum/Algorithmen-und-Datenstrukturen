@@ -27,8 +27,11 @@ public class PowerFunctionsTest{
         avgFastPowerCount = avgFastPowerCount/10000;
         avg_n = avg_n/10000;
 
-        System.out.println("Anzahl Multiplikationen slow: " + avgPowerCount);
-        System.out.println("Anzahl Multiplikationen fast: " + avgFastPowerCount);
+        System.out.println("durchschnitt Multiplikationen slow: " + avgPowerCount);
+        System.out.println("durchschnitt Multiplikationen fast: " + avgFastPowerCount);
         System.out.println("durschnitt n = " + avg_n);
+
+        System.out.println("slow count = " + PowerFunctions.getCountPower());
+        System.out.println("fast count = " + PowerFunctions.getCountFastPower());
     }
 }

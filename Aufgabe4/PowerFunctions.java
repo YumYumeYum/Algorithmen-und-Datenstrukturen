@@ -37,10 +37,11 @@ public class PowerFunctions{
         double ans = 1;
 
         while(n > 0){ 
-            int last_bit = (n & 1); 
+            int last_bit = (n & 1);
 
         if (last_bit > 0){ 
             ans = ans * x;
+            countFastPower.increment();
         } 
         
         x = x * x; 
