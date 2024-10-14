@@ -19,3 +19,8 @@ git checkout main
 
 3. Pull die neuesten Änderungen vom Remote-Repository
 git pull origin main
+----------------------
+dir hinzufuegen:
+git add dir_name
+git add .
+Dann wieder pushen
