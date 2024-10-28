@@ -52,6 +52,35 @@ public class PowerFunctions{
 
         return ans;
     }
+
+    public static void codeTest(){
+
+        double avgPowerCount = 0;
+        double avgFastPowerCount = 0;
+        double avg_n = 0;
+
+        for(int i = 1; i <= 10000; i++){
+            double x = Math.random();
+            int n = (int) (1000 * Math.random());
+
+            power(x, n);
+            fastPower(x, n);
+
+            avg_n += n;
+            avgFastPowerCount += getCountFastPower();
+            avgPowerCount += getCountPower();
+
+            resetCounters();
+        }
+        avg_n /= 10000;
+        avgFastPowerCount /= 10000;
+        avgPowerCount/= 10000;
+
+        System.out.println("Durchschnittlicher Exponent = " + avg_n);
+        System.out.println("Durchschnittlische Multiplikation FastPower = " + avgFastPowerCount);
+        System.out.println("Durchschnittliche Multiplikation Power = " + avgPowerCount);
+    }
+
     public static void main(String[] args) {
 
         System.out.println("power = " + PowerFunctions.power(2, 12));
@@ -60,4 +89,5 @@ public class PowerFunctions{
         System.out.println("count Power = " + countPower.get());
         System.out.println("count fast Power = " + countFastPower.get());
     }
+
 }
