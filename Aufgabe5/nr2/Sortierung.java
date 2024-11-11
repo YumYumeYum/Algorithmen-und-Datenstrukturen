@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Sortierung {
+public class Sortierung implements Comparable<Object> {     //Object I guess? zumindest keine Errors
     static void mergesort(Integer[] a){
 
         if(a.length > 1){
@@ -41,6 +41,19 @@ public class Sortierung {
             a[k++] = right[j++];
         }
         System.out.println("merge (a) = " + Arrays.toString(a));
+    }
+
+
+    //I don't have any idea what I'm doing here
+    public interface Comparable {
+    
+        public int compareTo(Object arg0);
+    }
+
+    @Override
+    public int compareTo(Object arg0) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     

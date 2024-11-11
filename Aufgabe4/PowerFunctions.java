@@ -41,7 +41,6 @@ public class PowerFunctions{
 
         if (last_bit > 0){ 
             ans = ans * x;
-            countFastPower.increment();
         } 
         
         x = x * x;
