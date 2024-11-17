@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
-public class Sortierung implements Comparable<Object> {     //Object I guess? zumindest keine Errors
-    static void mergesort(Integer[] a){
+public class SortierungCompare {
+    static void mergesort(Comparable[] a){
 
         if(a.length > 1){
             int half_length = a.length / 2;     //rundet bei ungeraden Zahlen
-            Integer[] left = new Integer[half_length];
-            Integer[] right = new Integer[a.length - half_length];
+            Comparable[] left = new Comparable[half_length];
+            Comparable[] right = new Comparable[a.length - half_length];
 
             System.arraycopy(a, 0, left, 0, left.length);
             System.out.println("left = " + Arrays.toString(left));
@@ -22,12 +22,12 @@ public class Sortierung implements Comparable<Object> {     //Object I guess? zu
         }
     }
 
-    static void merge(Integer[] a, Integer[] left, Integer[] right, int mid, int end) {
+    static void merge(Comparable[] a, Comparable[] left, Comparable[] right, int mid, int end) {
  
         int i = 0, j = 0, k = 0;
 
         while (i < mid && j < end) {
-            if (left[i] <= right[j]) {
+            if (left[i].compareTo(right[j]) <=0 ) {
                 a[k++] = left[i++];
             }
             else {
@@ -42,19 +42,4 @@ public class Sortierung implements Comparable<Object> {     //Object I guess? zu
         }
         System.out.println("merge (a) = " + Arrays.toString(a));
     }
-
-
-    //I don't have any idea what I'm doing here
-    public interface Comparable {
-    
-        public int compareTo(Object arg0);
-    }
-
-    @Override
-    public int compareTo(Object arg0) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    
 }
