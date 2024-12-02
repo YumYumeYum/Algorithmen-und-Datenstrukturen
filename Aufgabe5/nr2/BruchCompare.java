@@ -1,62 +1,66 @@
-public class BruchCompare implements Comparable<brueche>{
+public class BruchCompare implements Comparable<BruchCompare> {
 
     private int zaehler;
     private int nenner;
 
-    public BruchCompare(int zaehler, int nenner){
-        this.zaehler = zaehler;
-        this.nenner = nenner;
+    public BruchCompare(int zaehler, int nenner) {
+        if (nenner == 0) {
+            throw new IllegalArgumentException("Versuch es nochmal und ich ruf die Polizei");
+        }
+        int teiler = ggt(zaehler, nenner);
+        this.zaehler = zaehler / teiler;
+        this.nenner = nenner / teiler;
+        if (this.nenner < 0) { // Negative Brüche immer im Zähler speichern
+            this.zaehler = -this.zaehler;
+            this.nenner = -this.nenner;
+        }
     }
 
-    public int compareTo(BruchCompare bruchToCompare){
-
-        return 0;
+    @Override
+    public int compareTo(BruchCompare other) {
+        // Vergleich durch Kreuzmultiplikation
+        long thisProduct = (long) this.zaehler * other.nenner;
+        long otherProduct = (long) other.zaehler * this.nenner;
+        return Long.compare(thisProduct, otherProduct);
     }
 
-    public void add (brueche added_obj){
-        
-        this.zaehler = this.zaehler * added_obj.nenner + added_obj.zaehler * this.nenner;
-        this.nenner = this.nenner * added_obj.nenner;
+    public void add(BruchCompare addedObj) {
+        this.zaehler = this.zaehler * addedObj.nenner + addedObj.zaehler * this.nenner;
+        this.nenner = this.nenner * addedObj.nenner;
 
         int teiler = ggt(this.zaehler, this.nenner);
         this.zaehler /= teiler;
         this.nenner /= teiler;
     }
 
-    public String get(){
-
-        if(this.nenner == 1)
-            return "" + this.zaehler;
-
-        return zaehler + "/" + nenner;
+    @Override
+    public String toString() {
+        return this.nenner == 1 ? String.valueOf(this.zaehler) : zaehler + "/" + nenner;
     }
 
-    public int ggt(int a, int b){
-
-        if(b > a)
-            return (ggt(b,a));
-        else
-            return( (b==0) ? a : ggt(b, a%b));
+    private int ggt(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return Math.abs(a);
     }
 
-    public void e(int n){
-
+    public void e(int n) {
         this.zaehler = 0;
         this.nenner = 1;
 
-        int temp_zaehler = 1;
-        int temp_nenner = 1;
+        int tempZaehler = 1;
+        int tempNenner = 1;
 
-        BruchCompare first_add = new BruchCompare(1, 1);
-        add(first_add);
+        this.add(new BruchCompare(1, 1));
 
-        for(int i = 1; i <= n; i++){
-            temp_nenner *= i;
+        for (int i = 1; i <= n; i++) {
+            tempNenner *= i;
 
-            BruchCompare new_obj = new BruchCompare(temp_zaehler, temp_nenner);
-            add(new_obj);
+            BruchCompare newObj = new BruchCompare(tempZaehler, tempNenner);
+            this.add(newObj);
         }
-
     }
-
 }
