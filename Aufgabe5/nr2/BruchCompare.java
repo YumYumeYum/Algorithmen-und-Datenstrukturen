@@ -7,21 +7,21 @@ public class BruchCompare implements Comparable<BruchCompare> {
         if (nenner == 0) {
             throw new IllegalArgumentException("Versuch es nochmal und ich ruf die Polizei");
         }
+        if (nenner < 0) { 
+            zaehler = -zaehler;
+            nenner = -nenner;
+        }
         int teiler = ggt(zaehler, nenner);
         this.zaehler = zaehler / teiler;
         this.nenner = nenner / teiler;
-        if (this.nenner < 0) { // Negative Brüche immer im Zähler speichern
-            this.zaehler = -this.zaehler;
-            this.nenner = -this.nenner;
-        }
     }
+    
 
-    @Override
+    @Override       //Kreuzmultiplikation sagt Internet
     public int compareTo(BruchCompare other) {
-        // Vergleich durch Kreuzmultiplikation
-        long thisProduct = (long) this.zaehler * other.nenner;
-        long otherProduct = (long) other.zaehler * this.nenner;
-        return Long.compare(thisProduct, otherProduct);
+        int thisProduct = this.zaehler * other.nenner;
+        int otherProduct = other.zaehler * this.nenner;
+        return Integer.compare(thisProduct, otherProduct);
     }
 
     public void add(BruchCompare addedObj) {
@@ -33,7 +33,6 @@ public class BruchCompare implements Comparable<BruchCompare> {
         this.nenner /= teiler;
     }
 
-    @Override
     public String toString() {
         return this.nenner == 1 ? String.valueOf(this.zaehler) : zaehler + "/" + nenner;
     }
