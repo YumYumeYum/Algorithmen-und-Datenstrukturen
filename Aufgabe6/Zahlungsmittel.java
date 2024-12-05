@@ -1,5 +1,5 @@
 
-public abstract class Zahlungsmittel {
+public abstract class Zahlungsmittel implements Comparable<Zahlungsmittel> {
   private String waehrung;
   private double wert;
   protected Zahlungsmittel(String waehrung, double wert) {
@@ -13,4 +13,9 @@ public abstract class Zahlungsmittel {
   public String toString() {
     return (wert + " " + waehrung);
   }
+
+  public int compareTo(Zahlungsmittel other) {
+    return Double.compare(this.getWert(), other.getWert());
+  }
+
 }

@@ -47,7 +47,8 @@ public class Anwendungsbeispiel {
 
       Map<String, Double> totalValueMap = new HashMap<>();
       double totalWeight = 0.0;
-
+      double totalSurface = 0.0;
+      double totalCoinHeight = 0.0;
 
       for (Zahlungsmittel obj : validGeld) {
          //Gesamtwert unterschieldicher Waehrung
@@ -58,17 +59,38 @@ public class Anwendungsbeispiel {
          if(obj instanceof Muenze){
             Muenze muenze = (Muenze) obj; //downcast, Zahlungsmittel kennt .getGewicht nicht
             totalWeight += muenze.getGewicht();
+
+            //groeße muenzen in cm
+            double coinHeight = muenze.getDicke() / 10;
+            totalCoinHeight += coinHeight; 
+         }
+
+         //flaeche Scheine
+         if(obj instanceof Schein){
+            Schein schein = (Schein) obj;
+
+            double width_cm = schein.getBreite() / 10;   //da mm
+            double height_cm = schein.getLaenge() / 10;
+
+            totalSurface += (width_cm * height_cm);
          }
 
      }
+
+      SortierungCompare.mergesort(validGeld);
+
      
       //nur print zum debuggen
 
       for (Map.Entry<String, Double> entry : totalValueMap.entrySet()) {
       System.out.println("Währung: " + entry.getKey() + ", Summe: " + entry.getValue());
       }
-      System.out.println("muenzen Gesamtgewicht= " + totalWeight + "\n");
+      System.out.println("muenzen Gesamtgewicht in Gramm = " + totalWeight + "\n");
+      System.out.println("Gesamtflaeche = " + totalSurface + "\n");
+      System.out.println("Muenz hoehe = " + totalCoinHeight + "\n");
 
-
+      for(int i = 0; i < validGeld.length; i++){
+         System.out.println("Wert an validGeld["+i+"] = " + validGeld[i].getWert());
+      }
   }
 }
